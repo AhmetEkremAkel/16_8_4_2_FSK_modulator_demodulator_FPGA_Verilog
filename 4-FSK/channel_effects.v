@@ -15,7 +15,7 @@ module channel_effects(
     reg signed [17:0] temp, temp_2;
     reg signed [17:0] noise_1, noise_2;
     
-    // Aşağıdaki real değişkenleri ALWAY�? BLO�?U DI�?INDA tanımlıyoruz
+
     real u1, u2;
     real r, theta;
     real gauss_1, gauss_2;
@@ -23,7 +23,7 @@ module channel_effects(
 
     
     always @(posedge clk) begin
-        // 1) İki üniform (0..1) rastgele sayı
+
         u1 = $urandom_range(1, 65535) / 65536.0;
         u2 = $urandom_range(1, 65535) / 65536.0;
         
