@@ -21,7 +21,6 @@ module fsk_demodulator(
     reg [7:0] sync_pattern_counter;
 
     // Frekans tablosu (1MHz-8MHz arası)
-    // 16 yerine sadece 8 adet frekans saklıyoruz
     reg [31:0] freq_table [0:1];
     initial begin
         freq_table[0] = 32'd1000000;  // ~1 MHz
@@ -35,7 +34,6 @@ module fsk_demodulator(
     reg signed [15:0] sample_buffer_Q[0:N-1];
     integer sample_index;
 
-    // 8 frekans için korelasyon akümülatörleri (16 yerine 8 adet)
     real C_i[0:1];
     real C_q[0:1];
     real energy[0:1];
@@ -55,7 +53,7 @@ module fsk_demodulator(
         end 
         else begin
             if (!sync_detected) begin
-                // Senkronizasyon işareti arıyoruz
+
                 if (adc_in_sin > SYNC_THRESHOLD) begin
                     sync_pattern_counter <= sync_pattern_counter + 1;
                     if (sync_pattern_counter >= SYNC_COUNT_REQUIRED) begin
@@ -68,7 +66,7 @@ module fsk_demodulator(
                 end
             end 
             else begin
-                // Sync bulundu, normal demodülasyon süreci
+
                 sample_buffer_I[sample_index] <= adc_in_sin;
                 sample_buffer_Q[sample_index] <= adc_in_cos;
                 sample_index <= sample_index + 1;
