@@ -15,7 +15,7 @@ module fsk_demodulator(
 
     // Senkronizasyon için parametreler
     parameter SYNC_THRESHOLD = 1;    // Kare dalgayı algılama eşiği
-    parameter SYNC_COUNT_REQUIRED = 8;  // Bu kadar ardışık örnek boyunca sinyal eşiğin üzerinde kalırsa sync kabul et
+    parameter SYNC_COUNT_REQUIRED = 8; 
 
     reg sync_detected;
     reg [7:0] sync_pattern_counter;
