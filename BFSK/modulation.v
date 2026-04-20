@@ -43,7 +43,6 @@ module fsk_modulator(
     wire [SINE_ROM_ADDR_WIDTH-1:0] sine_addr;
     wire [SINE_ROM_ADDR_WIDTH-1:0] cos_addr;
 
-    // Açıksözlü olmak adına:
     assign sine_addr = phase_accumulator[PHASE_WIDTH-1 : PHASE_WIDTH-SINE_ROM_ADDR_WIDTH];
     assign cos_addr  = sine_addr + (SINE_ROM_SIZE >> 2);
 
@@ -69,11 +68,10 @@ module fsk_modulator(
                 cos_out  <= 0;
                 sync_counter <= sync_counter + 1;
 
-                // Senkron bittiğinde hangi frekansa geçeceğiz?
+                // bir sonraki frekans
                 phase_increment <= frequency_increments[data_in];
 
                 if (sync_counter >= SYNC_LENGTH) begin
-                    // Sync süresi bitti, normal mod'a geç
                     sync_mode <= 0;
                     phase_increment <= frequency_increments[data_in];
                     phase_accumulator <= phase_accumulator + phase_increment;
