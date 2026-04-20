@@ -15,7 +15,7 @@ module channel_effects(
     reg signed [17:0] temp, temp_2;
     reg signed [17:0] noise_1, noise_2;
     
-    // Aşağıdaki real değişkenleri ALWAY�? BLO�?U DI�?INDA tanımlıyoruz
+
     real u1, u2;
     real r, theta;
     real gauss_1, gauss_2;
