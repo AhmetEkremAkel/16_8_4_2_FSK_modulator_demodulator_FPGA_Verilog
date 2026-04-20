@@ -59,7 +59,6 @@ module fsk_demodulator(
         end 
         else begin
             if (!sync_detected) begin
-                // Senkronizasyon işareti arıyoruz
                 if (adc_in_sin > SYNC_THRESHOLD) begin
                     sync_pattern_counter <= sync_pattern_counter + 1;
                     if (sync_pattern_counter >= SYNC_COUNT_REQUIRED) begin
@@ -116,7 +115,7 @@ module fsk_demodulator(
                         data_out <= max_index[2:0]; 
                     end 
                     else begin
-                        data_out <= data_out; // eşiği geçmiyorsa eski değerde kal
+                        data_out <= data_out;
                     end
 
                     // Örnek indeksi sıfırla
